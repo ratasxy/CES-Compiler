@@ -5,6 +5,8 @@ string a = "looooooocoooooo";
 for(int i=0;i<n;i++){
     cout << i << endl;
 
+    obelisk = 3. + 8.8.9;
+
     while(obelisk<asterisk){
         cout << "subiendo" << endl;
     }

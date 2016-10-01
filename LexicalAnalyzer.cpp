@@ -122,7 +122,7 @@ std::vector<pairsi> LexicalAnalyzer::parseLine()
                 token += c;
                 getChar(c);
                 lookup(c);
-                if (lookup(c) != digit && lookup(c) != alphabetic)
+                if (lookup(c) != digit && lookup(c) != alphabetic && lookup(c) != point)
                     break;
             }
 
@@ -200,6 +200,8 @@ LexicalAnalyzer::charType LexicalAnalyzer::lookup(char c){
         return parenthesis_start;
     else if(c == ')')
         return parenthesis_end;
+    else if(c == '.')
+        return point;
     else if(c == '\n')
         return end_of_line;
     else if(isDigit(c))
