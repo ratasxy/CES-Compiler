@@ -1,2 +1,19 @@
-int a = 5;
-int b=6;
+int astrerisk= 50;
+int obelisk =6 + 8;
+string a = "looooooocoooooo";
+
+for(int i=0;i<n;i++){
+    cout << i << endl;
+
+    while(obelisk<asterisk){
+        cout << "subiendo" << endl;
+    }
+}
+
+int a(int p){
+    int religion=0;
+    religion = religion+religion;
+    religion++;
+    ++religion;
+    cout << "clase" << endl;
+}

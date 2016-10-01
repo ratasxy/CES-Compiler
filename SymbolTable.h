@@ -12,6 +12,7 @@
 
 struct SymbolTableRecord {
     int type;
+    int line;
     boost::any value;
 };
 

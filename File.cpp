@@ -10,6 +10,8 @@ File::File(std::string fileName) {
     data = std::string((std::istreambuf_iterator<char>(file)),
                     std::istreambuf_iterator<char>());
 
+    data += "\n";
+
     count = 0;
 }
 
@@ -18,5 +20,6 @@ bool File::get(char &c) {
         return false;
 
     c = data[count++];
+
     return true;
 }
