@@ -23,6 +23,9 @@ LexicalAnalyzer::LexicalAnalyzer(std::string fileName) {
 
 bool LexicalAnalyzer::parse()
 {
+    std::ofstream outfile ("lexout.txt");
+    std::ofstream outval ("lexvalue.txt");
+    std::ofstream outline ("lexline.txt");
     while(this->getLine(this->currentLine)){
         this->lineCount++;
         std::vector<pairsi> tokens = this->parseLine();
@@ -31,9 +34,13 @@ bool LexicalAnalyzer::parse()
 
         for(int i=0;i<tokenst.size();i++) {
             std::cout << tokenst[i].first << " - " << tokenst[i].second.first << " - "  << tokenst[i].second.second << std::endl;
+            outfile << tokenst[i].second.first << std::endl;
+            outval << tokenst[i].first << std::endl;
+            outline << tokenst[i].second.second << std::endl;
         }
     }
 
+    outfile.close();
     return true;
 }
 
@@ -47,17 +54,61 @@ std::vector<pairspairii> LexicalAnalyzer::secondParseLine(std::vector<pairsi> &t
 
         if(lookup(token[0]) == digit || lookup(token[0]) == alphabetic || lookup(token[0]) == quotation) {
 
-            if(std::regex_search(token, sm, std::regex("^for|while|do$"))) {
+            if(std::regex_search(token, sm, std::regex("^fun$"))) {
                 stokens.push_back(
-                        make_pair(token, std::make_pair(iteration, line))
+                        make_pair(token, std::make_pair(fun, line))
+                );
+            }else if(std::regex_search(token, sm, std::regex("^end$"))) {
+                stokens.push_back(
+                        make_pair(token, std::make_pair(end, line))
+                );
+            }else if(std::regex_search(token, sm, std::regex("^loop$"))) {
+                stokens.push_back(
+                        make_pair(token, std::make_pair(loop, line))
+                );
+            }else if(std::regex_search(token, sm, std::regex("^true$"))) {
+                stokens.push_back(
+                        make_pair(token, std::make_pair(ctrue, line))
+                );
+            }else if(std::regex_search(token, sm, std::regex("^false$"))) {
+                stokens.push_back(
+                        make_pair(token, std::make_pair(cfalse, line))
+                );
+            }else if(std::regex_search(token, sm, std::regex("^return$"))) {
+                stokens.push_back(
+                        make_pair(token, std::make_pair(creturn, line))
+                );
+            }else if(std::regex_search(token, sm, std::regex("^for$"))) {
+                stokens.push_back(
+                        make_pair(token, std::make_pair(ifor, line))
+                );
+            }else if(std::regex_search(token, sm, std::regex("^while$"))) {
+                stokens.push_back(
+                        make_pair(token, std::make_pair(iwhile, line))
                 );
             }else if(std::regex_search(token, sm, std::regex("^int|float|string|char|bool$"))){
                 stokens.push_back(
                         make_pair(token, std::make_pair(dataType, line))
                 );
-            }else if(std::regex_search(token, sm, std::regex("^if|else$"))){
+            }else if(std::regex_search(token, sm, std::regex("^if$"))){
                 stokens.push_back(
-                        make_pair(token, std::make_pair(control, line))
+                        make_pair(token, std::make_pair(cif, line))
+                );
+            }else if(std::regex_search(token, sm, std::regex("^else$"))){
+                stokens.push_back(
+                        make_pair(token, std::make_pair(celse, line))
+                );
+            }else if(std::regex_search(token, sm, std::regex("^and$"))){
+                stokens.push_back(
+                        make_pair(token, std::make_pair(cand, line))
+                );
+            }else if(std::regex_search(token, sm, std::regex("^or$"))){
+                stokens.push_back(
+                        make_pair(token, std::make_pair(cor, line))
+                );
+            }else if(std::regex_search(token, sm, std::regex("^not$"))){
+                stokens.push_back(
+                        make_pair(token, std::make_pair(cnot, line))
                 );
             }else if(std::regex_search(token, sm, std::regex("^[a-zA-Z_]+.*$"))){
                 stokens.push_back(
@@ -182,6 +233,8 @@ LexicalAnalyzer::charType LexicalAnalyzer::lookup(char c){
         return mul_op;
     else if(c == '/')
         return div_op;
+    else if(c == ':')
+        return points_op;
     else if(c == '=')
         return assignment_op;
     else if(c == '"')
@@ -196,10 +249,16 @@ LexicalAnalyzer::charType LexicalAnalyzer::lookup(char c){
         return bracket_start;
     else if(c == '}')
         return bracket_end;
+    else if(c == '[')
+        return sbracket_start;
+    else if(c == ']')
+        return sbracket_end;
     else if(c == '(')
         return parenthesis_start;
     else if(c == ')')
         return parenthesis_end;
+    else if(c == ',')
+        return comma;
     else if(c == '.')
         return point;
     else if(c == '\n')

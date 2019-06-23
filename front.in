@@ -1,21 +1,30 @@
-int astrerisk= 50;
-int obelisk =6 + 8;
-string a = "looooooocoooooo";
+fun main ()
+    variable1 : int
+    variable2 : int
 
-for(int i=0;i<n;i++){
-    cout << i << endl;
+    variable1 = 5
+    variable2 = 10
 
-    obelisk = 3. + 8.8.9;
+    if variable1 < variable2
+        variable3 : int
+        variable3 = 2
+    else
+        variable3 = 20
+    end
 
-    while(obelisk<asterisk){
-        cout << "subiendo" << endl;
-    }
-}
+    if variable5 < variable2
+        variable6 : int
+    end
 
-int a(int p){
-    int religion=0;
-    religion = religion+religion;
-    religion++;
-    ++religion;
-    cout << "clase" << endl;
-}
+    variable10 = 0
+
+    while true
+        variable10 : int
+        variable10 = variable10 + 1
+        if variable10 > 10
+            variable6 = 0
+        end
+    loop
+end
+
+
