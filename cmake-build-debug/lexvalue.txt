@@ -16,7 +16,7 @@ variable1
 int
 variable2
 =
-10
+10.1
 if
 variable1
 <
@@ -84,6 +84,14 @@ other
 (
 )
 variable1
+:
+int
+end
+fun
+other
+(
+)
+variable2
 :
 int
 end

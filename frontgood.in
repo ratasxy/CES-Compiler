@@ -4,7 +4,7 @@ fun main ()
 
     variable1 = 5
     variable1 : int
-    variable2 = 10
+    variable2 = 10.1
 
     if variable1 < variable2
         variable3 : float
@@ -36,6 +36,10 @@ end
 
 fun other ()
     variable1 : int
+end
+
+fun other ()
+    variable2 : int
 end
 
 

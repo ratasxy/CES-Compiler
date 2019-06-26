@@ -204,7 +204,7 @@ public:
         if(t1 == "string" && t2 == "string")return var1;
         if(t1 == "bool" && t2 == "bool")return var1;
         if((t1 == "int" && t2 == "float") ||  (t1 == "float" && t2 == "int")){
-            cout << colowarn <<  "ERROR: Se convierte int a float" << colonorm << "\n";
+            cout << colowarn <<  "Advertencia: Se convierte int a float" << colonorm << "\n";
             if(t1 == "float")
                 return var1;
             return var2;
