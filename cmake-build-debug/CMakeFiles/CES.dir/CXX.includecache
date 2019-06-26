@@ -27,6 +27,8 @@ iterator
 -
 map
 -
+regex
+-
 
 /Users/jsantillana/University/compiladores/CES-Compiler/SyntaxRules.tab.c
 iostream
@@ -36,6 +38,16 @@ vector
 fstream
 -
 string
+-
+iterator
+-
+map
+-
+SymTable.cpp
+/Users/jsantillana/University/compiladores/CES-Compiler/SymTable.cpp
+info.h
+/Users/jsantillana/University/compiladores/CES-Compiler/info.h
+bits/stdc++.h
 -
 SyntaxRules.tab.h
 /Users/jsantillana/University/compiladores/CES-Compiler/SyntaxRules.tab.h
@@ -56,6 +68,8 @@ stdio.h
 
 /Users/jsantillana/University/compiladores/CES-Compiler/SyntaxRules.tab.h
 
+/Users/jsantillana/University/compiladores/CES-Compiler/info.h
+
 /Users/jsantillana/University/compiladores/CES-Compiler/main.cpp
 iostream
 -
@@ -63,6 +77,4 @@ LexicalAnalyzer.h
 /Users/jsantillana/University/compiladores/CES-Compiler/LexicalAnalyzer.h
 SyntaxRules.tab.c
 /Users/jsantillana/University/compiladores/CES-Compiler/SyntaxRules.tab.c
-SymTable.cpp
-/Users/jsantillana/University/compiladores/CES-Compiler/SymTable.cpp
 

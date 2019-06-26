@@ -15,5 +15,6 @@ CMakeFiles/CES.dir/main.cpp.o: ../LexicalAnalyzer.h
 CMakeFiles/CES.dir/main.cpp.o: ../SymTable.cpp
 CMakeFiles/CES.dir/main.cpp.o: ../SyntaxRules.tab.c
 CMakeFiles/CES.dir/main.cpp.o: ../SyntaxRules.tab.h
+CMakeFiles/CES.dir/main.cpp.o: ../info.h
 CMakeFiles/CES.dir/main.cpp.o: ../main.cpp
 

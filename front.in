@@ -6,25 +6,35 @@ fun main ()
     variable2 = 10
 
     if variable1 < variable2
-        variable3 : int
+        variable3 : float
         variable3 = 2
+        variable3 = 2 - 2
     else
+        variable3 : int
         variable3 = 20
     end
+
+    variable3 = 2
+    variable5 : int
 
     if variable5 < variable2
         variable6 : int
     end
 
+    variable10 : int
+    variable6 : int
     variable10 = 0
 
-    while true
-        variable10 : int
-        variable10 = variable10 + 1
+    while not true
+        variable10 = variable10 + 2.1 + 2
         if variable10 > 10
             variable6 = 0
         end
     loop
+end
+
+fun other ()
+    variable1 : int
 end
 
 

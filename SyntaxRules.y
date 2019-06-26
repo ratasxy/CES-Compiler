@@ -3,11 +3,17 @@
 #include <vector>
 #include <fstream>
 #include <string>
+#include <iterator>
+#include <map>
+#include "SymTable.cpp"
+#include "info.h"
+#include <bits/stdc++.h>
 
 using namespace std;
 
 union DATA{
   int num;
+  char *code;
   char *str;
 };
 
@@ -32,6 +38,7 @@ int yylex(){
     lineFile.getline(tmpline, 4);
 
 
+    yylval.code = strdup(tmp);
     yylval.num = stoi(tmpline);
     yylval.str = strdup(tmpval);
     cout << stoi(tmp) << "\n";
@@ -42,6 +49,9 @@ void yyerror (char const *s)
 {
   fprintf (stderr, "%s\n", s);
 }
+
+SymTable *scope = new SymTable();
+
 %}
 
 %token VARIABLE_NAME 200
@@ -93,7 +103,7 @@ decl: funcion
 
 global: declvar;
 
-funcion: FUN VARIABLE_NAME PARENTHESIS_START params PARENTHESIS_END funcion_tipo bloco END;
+funcion: FUN VARIABLE_NAME { scope = scope->createNewScope() } PARENTHESIS_START params PARENTHESIS_END funcion_tipo bloco { scope = scope->removeScope() } END;
 
 funcion_tipo:
     | POINTS tipo
@@ -118,20 +128,20 @@ params:
 
 parametro: VARIABLE_NAME POINTS tipo;
 
-declvar: VARIABLE_NAME POINTS tipo;
+declvar: VARIABLE_NAME POINTS tipo { scope->insert($1.str, $3.str, "") };
 
 comando: cmdif | cmdwhile | cmdatrib | cmdreturn | chamada;
 
-cmdif: IF exp bloco cmdelse END;
+cmdif: IF exp { scope = scope->createNewScope() } bloco { scope = scope->removeScope() } { scope = scope->createNewScope() } cmdelse { scope = scope->removeScope() }END;
 
 cmdelse:
     | ELSE IF exp bloco
     | ELSE bloco
 ;
 
-cmdwhile: WHILE exp bloco LOOP;
+cmdwhile: WHILE exp { scope = scope->createNewScope(); scope->test_bool($2.str) } bloco { scope = scope->removeScope() } LOOP;
 
-cmdatrib: var ASSIGN exp;
+cmdatrib: var ASSIGN exp { scope->test_type($1.str, $3.str) };
 
 chamada: VARIABLE_NAME PARENTHESIS_START listaexp PARENTHESIS_END;
 
@@ -151,14 +161,14 @@ exp: NUM
     | var
     | PARENTHESIS_START exp PARENTHESIS_END
     | chamada
-    | exp SUM exp { cout << $$.str << " " << $1.str << " " << $3.str << "\n"; }
-    | exp SUB exp
-    | exp MUL exp
-    | exp DIV exp
-    | exp MINUS exp
-    | exp MAYUS exp
-    | exp AND exp
-    | exp OR exp
-    | NOT exp
+    | exp SUM exp { string st=scope->test_type($1.str, $3.str).c_str();char *cstr = new char[st.length() + 1];strcpy(cstr, st.c_str());$$.str = cstr;   }
+    | exp SUB exp { string st=scope->test_type($1.str, $3.str).c_str();char *cstr = new char[st.length() + 1];strcpy(cstr, st.c_str());$$.str = cstr;   }
+    | exp MUL exp { string st=scope->test_type($1.str, $3.str).c_str();char *cstr = new char[st.length() + 1];strcpy(cstr, st.c_str());$$.str = cstr;   }
+    | exp DIV exp { string st=scope->test_type($1.str, $3.str).c_str();char *cstr = new char[st.length() + 1];strcpy(cstr, st.c_str());$$.str = cstr;   }
+    | exp MINUS exp { string st=scope->test_type($1.str, $3.str).c_str();char *cstr = new char[st.length() + 1];strcpy(cstr, st.c_str());$$.str = cstr;   }
+    | exp MAYUS exp { string st=scope->test_type($1.str, $3.str).c_str();char *cstr = new char[st.length() + 1];strcpy(cstr, st.c_str());$$.str = cstr;   }
+    | exp AND exp { string st=scope->test_booleans($1.str, $3.str).c_str();char *cstr = new char[st.length() + 1];strcpy(cstr, st.c_str());$$.str = cstr;   }
+    | exp OR exp { string st=scope->test_booleans($1.str, $3.str).c_str();char *cstr = new char[st.length() + 1];strcpy(cstr, st.c_str());$$.str = cstr;   }
+    | NOT exp { string st=scope->test_bool($2.str).c_str();char *cstr = new char[st.length() + 1];strcpy(cstr, st.c_str());$$.str = cstr;   }
     | SUB exp
 ;
