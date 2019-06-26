@@ -33,7 +33,7 @@ bool LexicalAnalyzer::parse()
         std::vector<pairspairii> tokenst = this->secondParseLine(tokens);
 
         for(int i=0;i<tokenst.size();i++) {
-            std::cout << tokenst[i].first << " - " << tokenst[i].second.first << " - "  << tokenst[i].second.second << std::endl;
+            //std::cout << tokenst[i].first << " - " << tokenst[i].second.first << " - "  << tokenst[i].second.second << std::endl;
             outfile << tokenst[i].second.first << std::endl;
             outval << tokenst[i].first << std::endl;
             outline << tokenst[i].second.second << std::endl;

@@ -41,7 +41,7 @@ int yylex(){
     yylval.code = strdup(tmp);
     yylval.num = stoi(tmpline);
     yylval.str = strdup(tmpval);
-    cout << stoi(tmp) << "\n";
+    //cout << stoi(tmp) << "\n";
     return stoi(tmp);
 }
 
@@ -103,7 +103,7 @@ decl: funcion
 
 global: declvar;
 
-funcion: FUN VARIABLE_NAME { scope = scope->createNewScope() } PARENTHESIS_START params PARENTHESIS_END funcion_tipo bloco { scope = scope->removeScope() } END;
+funcion: FUN VARIABLE_NAME { scope->insert($2.str, "func", ""); scope = scope->createNewScope() } PARENTHESIS_START params PARENTHESIS_END funcion_tipo bloco { scope = scope->removeScope() } END;
 
 funcion_tipo:
     | POINTS tipo
@@ -141,7 +141,7 @@ cmdelse:
 
 cmdwhile: WHILE exp { scope = scope->createNewScope(); scope->test_bool($2.str) } bloco { scope = scope->removeScope() } LOOP;
 
-cmdatrib: var ASSIGN exp { scope->test_type($1.str, $3.str) };
+cmdatrib: var ASSIGN exp { scope->assingValue($1.str, "used"); scope->test_type($1.str, $3.str); };
 
 chamada: VARIABLE_NAME PARENTHESIS_START listaexp PARENTHESIS_END;
 
@@ -171,4 +171,5 @@ exp: NUM
     | exp OR exp { string st=scope->test_booleans($1.str, $3.str).c_str();char *cstr = new char[st.length() + 1];strcpy(cstr, st.c_str());$$.str = cstr;   }
     | NOT exp { string st=scope->test_bool($2.str).c_str();char *cstr = new char[st.length() + 1];strcpy(cstr, st.c_str());$$.str = cstr;   }
     | SUB exp
+    | STRING
 ;

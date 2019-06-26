@@ -6,8 +6,10 @@
 using namespace std;
 
 
+
 int main() {
-    LexicalAnalyzer la("/Users/jsantillana/University/compiladores/CES-Compiler/front.in");
+    LexicalAnalyzer la("/Users/jsantillana/University/compiladores/CES-Compiler/frontgood.in");
+
 
     cout << "\n\n-----------Ejecutando Lexico----------\n\n";
     la.parse();

@@ -2,21 +2,18 @@ fun main ()
     variable1 : int
     variable2 : int
 
-    variable1 = 5 - variable2
+    variable1 = 5
+    variable1 : int
     variable2 = 10
-    variable3 : int
 
     if variable1 < variable2
         variable3 : float
-
-        variable3 = "hola"
-        variable3 = 2 - 2
+        variable3 = 2.5
     else
         variable3 : int
         variable3 = 20
     end
 
-    variable3 = 2
     variable5 : int
     variable5 = 2
 
@@ -26,10 +23,11 @@ fun main ()
 
     variable10 : int
     variable6 : int
+    variable6 = 1
     variable10 = 0
 
     while not true
-        variable10 = variable10 + 2.1 + 2
+        variable10 = variable10 + 2
         if variable10 > 10
             variable6 = 0
         end

@@ -107,6 +107,9 @@
 		<Unit filename="/Users/jsantillana/University/compiladores/CES-Compiler/SymTable.cpp">
 			<Option target="CES"/>
 		</Unit>
+		<Unit filename="/Users/jsantillana/University/compiladores/CES-Compiler/colors.h">
+			<Option target="CES"/>
+		</Unit>
 		<Unit filename="/Users/jsantillana/University/compiladores/CES-Compiler/main.cpp">
 			<Option target="CES"/>
 		</Unit>

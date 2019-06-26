@@ -8,12 +8,20 @@ using namespace std;
 struct inter {
     string type;
     string second_type;
+    string value;
 };
 
 class SymTable {
     SymTable *father;
 
     map<string, inter> variables;
+
+    string colowarn = "\033[1;33m";
+    string coloerror = "\033[1;31m";
+    string coloinfo = "\033[1;32m";
+    string colonorm = "\033[0m";
+
+    bool debug = false;
 
 public:
     SymTable(){
@@ -25,12 +33,45 @@ public:
     }
 
     void insert(string name, string type, string second_type){
-        cout << "Se declara la variable " << name << " del tipo " << type << " \n";
-        inter newd;
+        if(this->debug) {
+            cout << coloinfo << "Se declara la variable " << name << " del tipo " << type << colonorm << " \n";
+        }
 
+        inter noimportant;
+        if(this->getType(name, noimportant)){
+            cout << coloerror << "La variable " << name << " ya se encuentra declarada y es del tipo " << noimportant.type << colonorm << " \n";
+            return;
+        }
+
+        inter newd;
         newd.type = type;
         newd.second_type = second_type;
+        newd.value = "";
         variables.insert(pair<string, inter>(name, newd));
+    }
+
+    bool assign(string name, string value){
+        std::map<string,inter>::iterator it;
+        it = variables.find(name);
+
+        if(it == variables.end())
+            return false;
+
+        it->second.value = value;
+        inter tmp = it->second;
+        this->variables.erase(it);
+        this->variables.insert(pair<string, inter>(name, tmp));
+        return true;
+    }
+
+    bool assingValue(string name, string value){
+        if(this->assign(name, value))
+            return true;
+
+        if(this->father != nullptr)
+            return this->father->assign(name, value);
+
+        return false;
     }
 
     bool search(string name, inter &answer){
@@ -55,14 +96,16 @@ public:
     }
 
     SymTable * createNewScope(){
-        cout << "Creando nuevo scope\n";
+        if(this->debug)
+            cout << coloinfo << "Creando ambito" << colonorm << "\n";
         SymTable *newd;
         newd = new SymTable(this);
         return newd;
     }
 
     SymTable * removeScope(){
-        cout << "Terminando nuevo scope\n";
+        if(this->debug)
+            cout << coloinfo << "Eliminando ambito" << colonorm << "\n";
         return this->father;
     }
 
@@ -84,7 +127,7 @@ public:
             return 850;
         }
 
-        cout << "ERROR: No se pudo detectar el tipo para " << text << "\n";
+        cout << coloerror <<  "ERROR: No se puede detectar el tipo de " << text << colonorm << "\n";
         return 0;
     }
 
@@ -92,10 +135,14 @@ public:
         inter p1;
         if(!this->getType(name, p1)){
             type = "error";
-            cout << "ERROR: La variable " << name << " no se encuentra declarada.\n";
+            cout << coloerror <<  "ERROR: La variable " << name << " no se encuentra declarada." << colonorm << "\n";
             return false;
         }
 
+        if(p1.value == "")
+        {
+            cout << colowarn <<  "ADVERTENCIA: La variable " << name << " no ha sido asignada" << colonorm << "\n";
+        }
         type = p1.type;
         return true;
     }
@@ -125,7 +172,7 @@ public:
         if(t1 == "bool")
             return var1;
 
-        cout << "ADVERTENCIA: El valor no es boolean\n";
+        cout << coloerror <<  "ERROR: El valor no es booleano" << colonorm << "\n";
         return "error";
     }
 
@@ -140,7 +187,7 @@ public:
         if(t1 == "bool" && t2 == "bool")
             return var1;
 
-        cout << "ADVERTENCIA: La operación debe ser con dos booleans\n";
+        cout << coloerror <<  "ERROR: la operacion es solo para booleanos" << colonorm << "\n";
         return "error";
     }
 
@@ -157,37 +204,37 @@ public:
         if(t1 == "string" && t2 == "string")return var1;
         if(t1 == "bool" && t2 == "bool")return var1;
         if((t1 == "int" && t2 == "float") ||  (t1 == "float" && t2 == "int")){
-            cout << "ADVERTENCIA: Se convierte int a float\n";
+            cout << colowarn <<  "ERROR: Se convierte int a float" << colonorm << "\n";
             if(t1 == "float")
                 return var1;
             return var2;
         }
         if((t1 == "int" && t2 == "string") ||  (t1 == "string" && t2 == "int")){
-            cout << "ERROR: No se puede convertir string a int\n";
+            cout << coloerror <<  "ERROR: No se puede convertir string a int" << colonorm << "\n";
             return var1;
         }
         if((t1 == "float" && t2 == "string") ||  (t1 == "string" && t2 == "float")){
-            cout << "ERROR: No se puede convertir string a float\n";
+            cout << coloerror <<  "ERROR: No se puede convertir string a float" << colonorm << "\n";
             return "error";
         }
         if((t1 == "bool" && t2 == "string") ||  (t1 == "string" && t2 == "bool")){
-            cout << "ERROR: No se puede convertir bool a string\n";
+            cout << coloerror <<  "ERROR: No se puede convertir bool a string" << colonorm << "\n";
             return "error";
         }
         if((t1 == "bool" && t2 == "int") ||  (t1 == "int" && t2 == "bool")){
-            cout << "ERROR: No se puede convertir bool a int\n";
+            cout << coloerror <<  "ERROR: No se puede convertir bool a int" << colonorm << "\n";
             return "error";
         }
         if((t1 == "bool" && t2 == "float") ||  (t1 == "string" && t2 == "float")){
-            cout << "ERROR: No se puede convertir bool a float\n";
+            cout << coloerror <<  "ERROR: No se puede convertir bool a flota" << colonorm << "\n";
             return "error";
         }
         if((t1 == "error" || t2 == "error")){
-            cout << "ERROR: Alguno de los operandos no tiene tipo definido\n";
+            cout << coloerror <<  "ERROR: Algunos operadores no tienen tipo definifo" << colonorm << "\n";
             return "error";
         }
 
-        cout << "ERROR: Casteo desconocido\n";
+        cout << coloerror <<  "ERROR: Casteo desconocido" << colonorm << "\n";
         return "error";
     }
 };
