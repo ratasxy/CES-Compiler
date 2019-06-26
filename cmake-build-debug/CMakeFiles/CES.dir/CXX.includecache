@@ -20,6 +20,14 @@ regex
 File.h
 /Users/jsantillana/University/compiladores/CES-Compiler/File.h
 
+/Users/jsantillana/University/compiladores/CES-Compiler/SymTable.cpp
+iostream
+-
+iterator
+-
+map
+-
+
 /Users/jsantillana/University/compiladores/CES-Compiler/SyntaxRules.tab.c
 iostream
 -
@@ -55,4 +63,6 @@ LexicalAnalyzer.h
 /Users/jsantillana/University/compiladores/CES-Compiler/LexicalAnalyzer.h
 SyntaxRules.tab.c
 /Users/jsantillana/University/compiladores/CES-Compiler/SyntaxRules.tab.c
+SymTable.cpp
+/Users/jsantillana/University/compiladores/CES-Compiler/SymTable.cpp
 

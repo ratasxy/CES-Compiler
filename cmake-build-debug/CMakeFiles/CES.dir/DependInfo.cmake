@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/jsantillana/University/compiladores/CES-Compiler/File.cpp" "/Users/jsantillana/University/compiladores/CES-Compiler/cmake-build-debug/CMakeFiles/CES.dir/File.cpp.o"
   "/Users/jsantillana/University/compiladores/CES-Compiler/LexicalAnalyzer.cpp" "/Users/jsantillana/University/compiladores/CES-Compiler/cmake-build-debug/CMakeFiles/CES.dir/LexicalAnalyzer.cpp.o"
+  "/Users/jsantillana/University/compiladores/CES-Compiler/SymTable.cpp" "/Users/jsantillana/University/compiladores/CES-Compiler/cmake-build-debug/CMakeFiles/CES.dir/SymTable.cpp.o"
   "/Users/jsantillana/University/compiladores/CES-Compiler/main.cpp" "/Users/jsantillana/University/compiladores/CES-Compiler/cmake-build-debug/CMakeFiles/CES.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

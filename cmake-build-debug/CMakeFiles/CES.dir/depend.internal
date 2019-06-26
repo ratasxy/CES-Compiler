@@ -8,9 +8,12 @@ CMakeFiles/CES.dir/LexicalAnalyzer.cpp.o
  /Users/jsantillana/University/compiladores/CES-Compiler/File.h
  /Users/jsantillana/University/compiladores/CES-Compiler/LexicalAnalyzer.cpp
  /Users/jsantillana/University/compiladores/CES-Compiler/LexicalAnalyzer.h
+CMakeFiles/CES.dir/SymTable.cpp.o
+ /Users/jsantillana/University/compiladores/CES-Compiler/SymTable.cpp
 CMakeFiles/CES.dir/main.cpp.o
  /Users/jsantillana/University/compiladores/CES-Compiler/File.h
  /Users/jsantillana/University/compiladores/CES-Compiler/LexicalAnalyzer.h
+ /Users/jsantillana/University/compiladores/CES-Compiler/SymTable.cpp
  /Users/jsantillana/University/compiladores/CES-Compiler/SyntaxRules.tab.c
  /Users/jsantillana/University/compiladores/CES-Compiler/SyntaxRules.tab.h
  /Users/jsantillana/University/compiladores/CES-Compiler/main.cpp

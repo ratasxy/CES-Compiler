@@ -177,6 +177,33 @@ LexicalAnalyzer.cpp.s:
 	$(MAKE) -f CMakeFiles/CES.dir/build.make CMakeFiles/CES.dir/LexicalAnalyzer.cpp.s
 .PHONY : LexicalAnalyzer.cpp.s
 
+SymTable.o: SymTable.cpp.o
+
+.PHONY : SymTable.o
+
+# target to build an object file
+SymTable.cpp.o:
+	$(MAKE) -f CMakeFiles/CES.dir/build.make CMakeFiles/CES.dir/SymTable.cpp.o
+.PHONY : SymTable.cpp.o
+
+SymTable.i: SymTable.cpp.i
+
+.PHONY : SymTable.i
+
+# target to preprocess a source file
+SymTable.cpp.i:
+	$(MAKE) -f CMakeFiles/CES.dir/build.make CMakeFiles/CES.dir/SymTable.cpp.i
+.PHONY : SymTable.cpp.i
+
+SymTable.s: SymTable.cpp.s
+
+.PHONY : SymTable.s
+
+# target to generate assembly for a file
+SymTable.cpp.s:
+	$(MAKE) -f CMakeFiles/CES.dir/build.make CMakeFiles/CES.dir/SymTable.cpp.s
+.PHONY : SymTable.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -219,6 +246,9 @@ help:
 	@echo "... LexicalAnalyzer.o"
 	@echo "... LexicalAnalyzer.i"
 	@echo "... LexicalAnalyzer.s"
+	@echo "... SymTable.o"
+	@echo "... SymTable.i"
+	@echo "... SymTable.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
